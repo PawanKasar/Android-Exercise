@@ -33,8 +33,11 @@ public class ThirdFragment extends Fragment {
         btnhird.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity)getActivity()).openFourthFragment();
+
                 Toast.makeText(getActivity(),"Wellcome to Third Fragment",Toast.LENGTH_LONG).show();
+                ((MainActivity)getActivity()).openFourthFragment();
+                btnhird.setVisibility(View.GONE);
+
             }
         });
 
