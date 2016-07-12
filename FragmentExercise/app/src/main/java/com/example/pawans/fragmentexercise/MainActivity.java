@@ -10,27 +10,66 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnfirst;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnfirst = (Button)findViewById(R.id.button_1);
+        openFirstFragment();
 
-        btnfirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-                FirstFragment fragment = new FirstFragment();
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.add(R.id.fragment_first,fragment);
-                ft.commit();
+    public void openFirstFragment(){
 
+        FirstFragment firstFragment = new FirstFragment();
+        getSupportFragmentManager().beginTransaction().addToBackStack("Fragment")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.fragment_first, firstFragment).commit();
+
+    }
+
+    public void openSecondFragment(){
+
+        SecondFragment secondFragment = new SecondFragment();
+        getSupportFragmentManager().beginTransaction().addToBackStack("Fragment")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.fragment_first, secondFragment).commit();
+
+//        FragmentManager fm = getSupportFragmentManager();
+//        FragmentTransaction ft = fm.beginTransaction();
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .replace(R.id.fragment_first,secondFragment)
+//                .addToBackStack(null).commit();
+
+    }
+    public void openThirdFragment(){
+
+        ThirdFragment thirdFragment = new ThirdFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.replace(R.id.fragment_first,thirdFragment);
+        fragmentTransaction.addToBackStack("Fragment");
+        fragmentTransaction.commit();
+    }
+    public void openFourthFragment(){
+
+        FourthFragment fourthFragment = new FourthFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.replace(R.id.fragment_first,fourthFragment);
+        fragmentTransaction.commit();
+
+    }
+
+    public void clearBackStack() {
+        while (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            try {
+                getSupportFragmentManager().popBackStackImmediate();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
-
+        }
     }
 }
