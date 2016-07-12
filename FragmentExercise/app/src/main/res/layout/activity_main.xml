@@ -18,8 +18,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:weight="30">
+        android:layout_height="match_parent">
 
     <fragment
         android:name="com.example.pawans.fragmentexercise.FirstFragment"
